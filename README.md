@@ -1,5 +1,8 @@
 # pgtools
 
+[![Build
+Status](https://travis-ci.org/olalonde/pgtools.svg?branch=master)](https://travis-ci.org/olalonde/pgtools)
+
 Pure Node.js implementation of PostgreSQL's
 [createdb](http://www.postgresql.org/docs/9.4/static/app-createdb.html)
 and
