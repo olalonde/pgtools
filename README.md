@@ -35,9 +35,10 @@ pgtools.createdb({
 # Usage
 
 pgtools.createdb(config, dbname [, cb(err)])
+
 pgtools.dropdb(config, dbname [, cb(err)])
 
-* _object_ __config___
+* _object_ __config__
 
     An object with user, password, port, and host properties.
 
@@ -45,6 +46,6 @@ pgtools.dropdb(config, dbname [, cb(err)])
 
     The name of the database to create.
 
-* _function __cb__
+* _function_ __cb__
 
     A callback that takes an error argument.
