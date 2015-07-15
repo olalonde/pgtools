@@ -1,0 +1,30 @@
+{
+  "name": "pgtools",
+  "version": "0.0.1",
+  "description": "Pure Node.js implementation of PostgreSQL's createdb and dropdb tools",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^4.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olalonde/createdb.git"
+  },
+  "keywords": [
+    "postgres",
+    "postrgresql",
+    "createdb",
+    "dropdb",
+    "knex"
+  ],
+  "author": "Olivier Lalonde <olalonde@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olalonde/pgtools/issues"
+  },
+  "homepage": "https://github.com/olalonde/pgtools#readme"
+}
