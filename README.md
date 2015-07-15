@@ -10,13 +10,13 @@ Only supports connection options and database name at the moment.
 
 # Install
 
-```
+```bash
 npm install --save pgtools
 ```
 
 # Example
 
-```
+```javascript
 var pgtools = require('pgtools');
 pgtools.createdb({
   user: 'postgres',
