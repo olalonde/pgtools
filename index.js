@@ -9,7 +9,9 @@ var errNames = {
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
   return function (config, dbName, cb) {
-    config.database = 'postgres';
+    if (!config.database) {
+      config.database = 'postgres';
+    }
     var client = new Client(config);
     //disconnect client when all queries are finished
     client.on('drain', client.end.bind(client));
