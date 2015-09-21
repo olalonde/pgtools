@@ -1,9 +1,10 @@
 {
   "name": "pgtools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pure Node.js implementation of PostgreSQL's createdb and dropdb tools",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^2.10.0",
     "pg": "^4.4.0"
   },
   "devDependencies": {},

@@ -1,3 +1,4 @@
+var BPromise = require('bluebird');
 var pg = require('pg');
 var Client = pg.Client;
 
@@ -9,27 +10,33 @@ var errNames = {
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
   return function (config, dbName, cb) {
-    if (!config.database) {
-      config.database = 'postgres';
-    }
-    var client = new Client(config);
-    //disconnect client when all queries are finished
-    client.on('drain', client.end.bind(client));
-    client.on('error', function () {});
-    client.connect();
-
-    var escapedDbName = dbName.replace(/\"/g, '""');
-    client.query(action + ' DATABASE "' + escapedDbName + '"', function (pgErr, res) {
-      var err;
-      if (pgErr) {
-        err = new Error();
-        err = {
-          name: errNames[pgErr.code],
-          pgErr: pgErr
-        };
+    return new BPromise(function (resolve, reject) {
+      if (!config.database) {
+        config.database = 'postgres';
       }
-      cb(err, res);
-    });
+      var client = new Client(config);
+      //disconnect client when all queries are finished
+      client.on('drain', client.end.bind(client));
+      client.on('error', function (err) {
+        reject(err);
+      });
+      client.connect();
+
+      var escapedDbName = dbName.replace(/\"/g, '""');
+      var sql = action + ' DATABASE "' + escapedDbName + '"';
+      client.query(sql, function (pgErr, res) {
+        var err;
+        if (pgErr) {
+          err = new Error();
+          err = {
+            name: errNames[pgErr.code],
+            pgErr: pgErr
+          };
+        }
+        if (err) return reject(err);
+        resolve(res);
+      });
+    }).nodeify(cb);
   };
 };
 

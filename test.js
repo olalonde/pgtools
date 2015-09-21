@@ -9,7 +9,8 @@ function die (err) {
 }
 
 var config = {
-  hostname: 'localhost'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER,
 };
 
 dropdb(config, 'pgtools-test', function (err, res) {
@@ -26,6 +27,7 @@ dropdb(config, 'pgtools-test', function (err, res) {
           if (!err || err.name !== 'invalid_catalog_name') {
             die('Dropping an nonexistent database should return an error');
           }
+          console.log('tests pass');
           process.exit();
         });
       });
