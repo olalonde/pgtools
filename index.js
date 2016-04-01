@@ -33,7 +33,7 @@ function createOrDropDatabase(action) {
       var escapedDbName = dbName.replace(/\"/g, '""');
       var sql = action + ' DATABASE "' + escapedDbName + '"';
       if(action === 'CLONE_TEMPLATE') {
-        sql = action + ' DATABASE "' + escapedDbName + '" WITH TEMPLATE "' + args[args.length - 1].replace(/\"/g, '""') + '"';
+        sql = 'CREATE DATABASE "' + escapedDbName + '" WITH TEMPLATE "' + args[args.length - 1].replace(/\"/g, '""') + '"';
       }
       client.query(sql, function (pgErr, res) {
         var err;

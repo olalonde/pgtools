@@ -1,5 +1,6 @@
 var createdb = require('./').createdb;
 var dropdb = require('./').dropdb;
+var cloneTemplate = require('./').cloneTemplate;
 
 function die(err) {
   if (err) {
@@ -22,8 +23,7 @@ dropdb(config, 'pgtools-test', function(err, res) {
       if (!err || err.name !== 'duplicate_database') {
         die('Creating an existing database should return an error');
       }
-      config.template = 'sanderman_db_template';
-      createdb(config, 'pgtools-test-template', function(err, res) {
+      cloneTemplate(config, 'pgtools-test-template', 'sanderman_db_template', function(err, res) {
         die(err);
         dropdb(config, 'pgtools-test-template', function(err, res) {
           die(err);
