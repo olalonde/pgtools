@@ -12,7 +12,11 @@ function createOrDropDatabase(action) {
   return function (config, dbName) {
 
     var args = Array.prototype.slice.call(arguments);
-    var cb = args.pop();
+    var cb;
+
+    if(typeof args[args.length - 1] === 'function') {
+      cb  = args.pop();
+    }
 
     return new BPromise(function (resolve, reject) {
       if (!config.database) {
