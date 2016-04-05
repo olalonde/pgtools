@@ -9,7 +9,15 @@ var errNames = {
 
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
-  return function (config, dbName, cb) {
+  return function (config, dbName) {
+
+    var args = Array.prototype.slice.call(arguments);
+    var cb;
+
+    if(typeof args[args.length - 1] === 'function') {
+      cb  = args.pop();
+    }
+
     return new BPromise(function (resolve, reject) {
       if (!config.database) {
         config.database = 'postgres';
@@ -24,6 +32,9 @@ function createOrDropDatabase(action) {
 
       var escapedDbName = dbName.replace(/\"/g, '""');
       var sql = action + ' DATABASE "' + escapedDbName + '"';
+      if(action === 'CLONE_TEMPLATE') {
+        sql = 'CREATE DATABASE "' + escapedDbName + '" WITH TEMPLATE "' + args[args.length - 1].replace(/\"/g, '""') + '"';
+      }
       client.query(sql, function (pgErr, res) {
         var err;
         if (pgErr) {
@@ -33,6 +44,7 @@ function createOrDropDatabase(action) {
             pgErr: pgErr
           };
         }
+        client.end();
         if (err) return reject(err);
         resolve(res);
       });
@@ -42,5 +54,6 @@ function createOrDropDatabase(action) {
 
 module.exports = {
   createdb: createOrDropDatabase('create'),
-  dropdb: createOrDropDatabase('drop')
+  dropdb: createOrDropDatabase('drop'),
+  cloneTemplate: createOrDropDatabase('clone_template')
 };

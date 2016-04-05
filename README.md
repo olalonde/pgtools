@@ -41,6 +41,8 @@ pgtools.createdb(config, dbname [, cb(err)])
 
 pgtools.dropdb(config, dbname [, cb(err)])
 
+pgtools.cloneTemplate(config, dbname, templateName [, cb(err)])
+
 * _object_ __config__
 
     An object with user, password, port, and host properties.
@@ -48,6 +50,10 @@ pgtools.dropdb(config, dbname [, cb(err)])
 * _string_ __dbname__
 
     The name of the database to create.
+
+* _string_ __templateName__
+    
+    Name of the template to clone from.
 
 * _function_ __cb__
 
