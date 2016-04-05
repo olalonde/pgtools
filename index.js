@@ -44,6 +44,7 @@ function createOrDropDatabase(action) {
             pgErr: pgErr
           };
         }
+        client.end();
         if (err) return reject(err);
         resolve(res);
       });
