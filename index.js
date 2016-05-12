@@ -11,7 +11,7 @@ var errNames = {
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
   return function (opts, dbName, cb) {
-    let config
+    var config
     if (typeof opts === 'string') {
       config = parse(opts);
       config.database = 'postgres';
@@ -19,7 +19,7 @@ function createOrDropDatabase(action) {
       if (!opts.database) {
         opts.database = 'postgres';
       }
-      config = opts
+      config = opts;
     }
     return new BPromise(function (resolve, reject) {
       var client = new Client(config);
