@@ -22,12 +22,15 @@ npm install --save pgtools
 ```javascript
 var pgtools = require('pgtools');
 
+// This can also be a connection string
+// (in which case the database part is ignored and replaced with postgres)
+
 const config = {
   user: 'postgres',
   password: 'some pass',
   port: 5432,
   host: 'localhost'
-} /* this can also be a connection string */
+}
 
 pgtools.createdb(config, 'test-db', function (err, res) {
   if (err) {
