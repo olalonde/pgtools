@@ -33,6 +33,7 @@ pgtools.createdb({
   }
   console.log(res);
 });
+// a promise API is also available if cb is omitted
 ```
 
 # Usage
@@ -52,4 +53,5 @@ pgtools.dropdb(config, dbname [, cb(err)])
 
 * _function_ __cb__
 
-    A callback that takes an error argument.
+    A callback that takes an error argument. If cb is omitted the
+    function will return a Promise.
