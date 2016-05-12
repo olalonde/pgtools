@@ -8,10 +8,10 @@ function die (err) {
   }
 }
 
-var config = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER,
-};
+var config = process.env.PG_CONNECTION_STRING || {
+  host: process.env.DB_HOST || '192.168.99.100',
+  user: process.env.DB_USER || 'postgres',
+}
 
 dropdb(config, 'pgtools-test', function (err, res) {
   // ignore errors in case test was never run before

@@ -1,4 +1,5 @@
 var BPromise = require('bluebird');
+var parse = require('pg-connection-string').parse;
 var pg = require('pg');
 var Client = pg.Client;
 
@@ -9,11 +10,18 @@ var errNames = {
 
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
-  return function (config, dbName, cb) {
-    return new BPromise(function (resolve, reject) {
-      if (!config.database) {
-        config.database = 'postgres';
+  return function (opts, dbName, cb) {
+    let config
+    if (typeof opts === 'string') {
+      config = parse(opts);
+      config.database = 'postgres';
+    } else {
+      if (!opts.database) {
+        opts.database = 'postgres';
       }
+      config = opts
+    }
+    return new BPromise(function (resolve, reject) {
       var client = new Client(config);
       //disconnect client when all queries are finished
       client.on('drain', client.end.bind(client));

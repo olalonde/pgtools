@@ -1,0 +1,15 @@
+db:
+  image: postgres:9.3
+  ports:
+    - "5432:5432"
+
+dbcreate:
+  image: postgres:9.3
+  links:
+    - db
+  command: >
+    /bin/bash -c "
+      while ! psql --host=db --username=postgres; do sleep 1; done;
+      psql --host=db --username=postgres -c 'DROP DATABASE \"pgtools-test\";';
+      psql --host=db --username=postgres -c 'CREATE DATABASE \"pgtools-test\";';
+    "

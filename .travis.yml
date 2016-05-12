@@ -3,4 +3,9 @@ node_js:
   - "0.12"
   - "0.11"
   - "0.10"
-
+  - "5"
+  - "6"
+services:
+  - postgresql
+env:
+  - PG_CONNECTION_STRING="postgres://postgres@localhost"

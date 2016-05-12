@@ -26,7 +26,7 @@ pgtools.createdb({
   password: 'some pass',
   port: 5432,
   host: 'localhost'
-}, 'test-db', function (err, res) {
+} /* this can also be a connection string */, 'test-db', function (err, res) {
   if (err) {
     console.error(err);
     process.exit(-1);
@@ -43,7 +43,8 @@ pgtools.dropdb(config, dbname [, cb(err)])
 
 * _object_ __config__
 
-    An object with user, password, port, and host properties.
+    An object with user, password, port, and host properties. This can
+    also be a node-postgres compatible connection string.
 
 * _string_ __dbname__
 
