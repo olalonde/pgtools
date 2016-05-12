@@ -21,17 +21,28 @@ npm install --save pgtools
 
 ```javascript
 var pgtools = require('pgtools');
-pgtools.createdb({
+
+const config = {
   user: 'postgres',
   password: 'some pass',
   port: 5432,
   host: 'localhost'
-} /* this can also be a connection string */, 'test-db', function (err, res) {
+} /* this can also be a connection string */
+
+pgtools.createdb(config, 'test-db', function (err, res) {
   if (err) {
     console.error(err);
     process.exit(-1);
   }
   console.log(res);
+
+  pgtools.dropdb(config, 'test-db', function (err, res) {
+    if (err) {
+      console.error(err);
+      process.exit(-1);
+    }
+    console.log(res);
+  });
 });
 // a promise API is also available if cb is omitted
 ```
