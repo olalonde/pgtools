@@ -2,6 +2,9 @@
 
 [![Build
 Status](https://travis-ci.org/olalonde/pgtools.svg?branch=master)](https://travis-ci.org/olalonde/pgtools)
+[![Coverage Status](https://coveralls.io/repos/github/olalonde/pgtools/badge.svg?branch=master)](https://coveralls.io/github/olalonde/pgtools?branch=master)
+[![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+
 
 Pure Node.js implementation of PostgreSQL's
 [createdb](http://www.postgresql.org/docs/9.4/static/app-createdb.html)
@@ -52,9 +55,9 @@ pgtools.createdb(config, 'test-db', function (err, res) {
 
 # Usage
 
-pgtools.createdb(config, dbname [, cb(err)])
+`pgtools.createdb(config, dbname [, cb(err)])``
 
-pgtools.dropdb(config, dbname [, cb(err)])
+`pgtools.dropdb(config, dbname [, cb(err)])`
 
 * _object_ __config__
 
@@ -76,3 +79,14 @@ pgtools.dropdb(config, dbname [, cb(err)])
 
 * `createdbjs`: which emulates pgtools' `createdb` functionality.
 * `dropdbjs`: which emulates pgtools' `dropdb` functionality.
+
+## Releasing
+
+Rather than manually running `npm version <patch|minor|major>`, instead run:
+
+```
+npm run release
+```
+
+This will automatically generating a CHANGELOG, and bump your package version
+based on [the angular commit format](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md).

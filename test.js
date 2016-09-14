@@ -9,7 +9,7 @@ function die (err) {
 }
 
 var config = process.env.PG_CONNECTION_STRING || {
-  host: process.env.DB_HOST || '192.168.99.100',
+  host: process.env.DB_HOST || '127.0.0.1',
   user: process.env.DB_USER || 'postgres',
 }
 
