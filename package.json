@@ -22,7 +22,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc node test.js",
     "docker": "docker-compose up dbcreate && docker-compose up -d db",
-    "release": "standard-verison"
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
