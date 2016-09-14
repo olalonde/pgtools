@@ -13,10 +13,16 @@
     "createdbjs": "./createdb.js",
     "dropdbjs": "./createdb.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.11.12",
+    "nyc": "^8.1.0",
+    "standard-version": "^2.4.0"
+  },
   "scripts": {
-    "test": "node test.js",
-    "docker": "docker-compose up dbcreate && docker-compose up -d db"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc node test.js",
+    "docker": "docker-compose up dbcreate && docker-compose up -d db",
+    "release": "standard-verison"
   },
   "repository": {
     "type": "git",
