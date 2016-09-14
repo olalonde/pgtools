@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-var createdb = require('./').createdb;
+var dropdb = require('./').dropdb;
 var yargs = require('./lib/build-yargs')()
 var argv = yargs.argv;
 
-createdb({
+dropdb({
   host: argv.host,
   port: argv.port,
   user: argv.user
 }, argv._[0], function (err, res) {
   if (err) die(err, argv)
-  else if (!argv.silent) console.log('created database "' + argv._[0] + '"')
+  else if (!argv.silent) console.log('dropped database "' + argv._[0] + '"')
 })
 
 function die (err, argv) {

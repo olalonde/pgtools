@@ -34,4 +34,3 @@ dropdb(config, 'pgtools-test', function (err, res) {
     });
   });
 });
-

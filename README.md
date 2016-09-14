@@ -69,3 +69,10 @@ pgtools.dropdb(config, dbname [, cb(err)])
 
     A callback that takes an error argument. If cb is omitted the
     function will return a Promise.
+
+## Bins
+
+`pgtools` installs two useful binaries:
+
+* `createdbjs`: which emulates pgtools' `createdb` functionality.
+* `dropdbjs`: which emulates pgtools' `dropdb` functionality.
