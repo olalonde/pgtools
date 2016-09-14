@@ -55,7 +55,7 @@ pgtools.createdb(config, 'test-db', function (err, res) {
 
 # Usage
 
-`pgtools.createdb(config, dbname [, cb(err)])``
+`pgtools.createdb(config, dbname [, cb(err)])`
 
 `pgtools.dropdb(config, dbname [, cb(err)])`
 
