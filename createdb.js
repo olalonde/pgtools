@@ -14,7 +14,7 @@ createdb({
 
 function die (err, argv) {
   if (err) {
-    if (!argv.silent) console.log(err.pgErr.toString());
+    if (!argv.silent) console.log(err.pgErr ? err.pgErr.toString() : err.toString());
     process.exit(-1);
   }
 }
