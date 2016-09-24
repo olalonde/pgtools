@@ -11,7 +11,7 @@
   },
   "bin": {
     "createdbjs": "./createdb.js",
-    "dropdbjs": "./createdb.js"
+    "dropdbjs": "./dropdb.js"
   },
   "devDependencies": {
     "coveralls": "^2.11.12",
