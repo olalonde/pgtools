@@ -36,10 +36,8 @@ function createOrDropDatabase(action) {
         var err;
         if (pgErr) {
           err = new Error();
-          err = {
-            name: errNames[pgErr.code],
-            pgErr: pgErr
-          };
+          err.name = errNames[pgErr.code],
+          err.pgErr = pgErr
         }
         if (err) return reject(err);
         resolve(res);

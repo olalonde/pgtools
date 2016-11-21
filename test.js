@@ -18,13 +18,13 @@ dropdb(config, 'pgtools-test', function (err, res) {
   createdb(config, 'pgtools-test', function (err, res) {
     die(err);
     createdb(config, 'pgtools-test', function (err, res) {
-      if (!err || err.name !== 'duplicate_database') {
+      if (!err || !(err instanceof Error) || err.name !== 'duplicate_database') {
         die('Creating an existing database should return an error');
       }
       dropdb(config, 'pgtools-test', function (err, res) {
         die(err);
         dropdb(config, 'pgtools-test', function (err, res) {
-          if (!err || err.name !== 'invalid_catalog_name') {
+          if (!err || !(err instanceof Error) || err.name !== 'invalid_catalog_name') {
             die('Dropping an nonexistent database should return an error');
           }
           console.log('tests pass');
