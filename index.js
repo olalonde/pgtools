@@ -3,9 +3,19 @@ var parse = require('pg-connection-string').parse;
 var pg = require('pg');
 var Client = pg.Client;
 
-var errNames = {
-  '42P04': 'duplicate_database',
-  '3D000': 'invalid_catalog_name'
+var errors = {
+  '42P04': {
+    name: 'duplicate_database',
+    message: 'Attempted to create a duplicate database'
+  },
+  '3D000': {
+    name: 'invalid_catalog_name',
+    message: 'Attempted to drop a database that does not exist'
+  },
+  '23505': {
+    name: 'unique_violation',
+    message: 'Attempted to create a database concurrently'
+  }
 };
 
 function createOrDropDatabase(action) {
@@ -35,8 +45,8 @@ function createOrDropDatabase(action) {
       client.query(sql, function (pgErr, res) {
         var err;
         if (pgErr) {
-          err = new Error();
-          err.name = errNames[pgErr.code],
+          err = new Error(errors[pgErr.code].message || "Unknown Postgres error");
+          err.name = errors[pgErr.code].name || 'PostgresError',
           err.pgErr = pgErr
         }
         if (err) return reject(err);
