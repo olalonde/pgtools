@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/olalonde/pgtools/compare/v0.2.2...v0.2.3) (2016-11-27)
+
+
+### Bug Fixes
+
+* an object was being thrown rather than an Error ([#11](https://github.com/olalonde/pgtools/issues/11)) ([ec2972c](https://github.com/olalonde/pgtools/commit/ec2972c))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/olalonde/pgtools/compare/v0.2.1...v0.2.2) (2016-09-24)
 
