@@ -29,7 +29,6 @@ function PgError(pgErr) {
   this.pgErr = pgErr;
 }
 PgError.prototype = Object.create(Error.prototype);
-// PgError.prototype.constructor = PgError;
 
 function createOrDropDatabase(action) {
   action = action.toUpperCase();
