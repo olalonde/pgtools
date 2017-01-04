@@ -15,6 +15,10 @@ var errors = {
   '23505': {
     name: 'unique_violation',
     message: 'Attempted to create a database concurrently.'
+  },
+  '55006': {
+    name: 'drop_database_in_use',
+    message: 'Attempted to drop a database that is being accessed by other users'
   }
 };
 
