@@ -23,11 +23,11 @@ var errors = {
 };
 
 function PgError(pgErr) {
-  var message = (errors[pgErr.code].message || 'Unknown Postgres error.') + ' Cause: ' + pgErr.message;
-  var error = Error.call(this, message);
-  this.message = error.message;
+  var message = (errors[pgErr.code] ? errors[pgErr.code].message : 'Postgres error.') + ' Cause: ' + pgErr.message;
+	var error = Error.call(this, message);
+	this.message = error.message;
 
-  this.name = errors[pgErr.code].name || 'PgError';
+	this.name = errors[pgErr.code] ? errors[pgErr.code].name : 'PgError';
 
   this.stack = error.stack;
   this.pgErr = pgErr;
