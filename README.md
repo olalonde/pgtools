@@ -14,13 +14,19 @@ tools.
 
 Only supports connection options and database name at the moment.
 
-# Install
+## Install
 
 ```bash
-npm install --save pgtools
+npm install --save -g pgtools
 ```
 
-# Example
+## CLI Example
+
+```bash
+createdbjs my_awesome_db --user=admin --pasword=admin
+```
+
+## Programatic Example
 
 ```javascript
 var pgtools = require('pgtools');
