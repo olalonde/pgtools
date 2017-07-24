@@ -6,7 +6,8 @@ var argv = yargs.argv;
 createdb({
   host: argv.host,
   port: argv.port,
-  user: argv.user
+  user: argv.user,
+  password: argv.password
 }, argv._[0], function (err, res) {
   if (err) die(err, argv)
   else if (!argv.silent) console.log('created database "' + argv._[0] + '"')

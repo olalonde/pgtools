@@ -1,7 +1,8 @@
-var BPromise = require('bluebird');
-var parse = require('pg-connection-string').parse;
-var pg = require('pg');
-var Client = pg.Client;
+const BPromise = require('bluebird');
+const parse = require('pg-connection-string').parse;
+const pg = require('pg');
+const Client = pg.Client;
+const ADMIN_DB = 'postgres'
 
 var errors = {
   '42P04': {
@@ -40,10 +41,10 @@ function createOrDropDatabase(action) {
     var config
     if (typeof opts === 'string') {
       config = parse(opts);
-      config.database = 'postgres';
+      config.database = ADMIN_DB;
     } else {
       if (!opts.database) {
-        opts.database = 'postgres';
+        opts.database = ADMIN_DB;
       }
       config = opts;
     }
