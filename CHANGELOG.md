@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/olalonde/pgtools/compare/v0.2.3...v0.3.0) (2017-07-24)
+
+
+### Features
+
+* allow password to be provided via CLI ([#18](https://github.com/olalonde/pgtools/issues/18)) ([3c0d313](https://github.com/olalonde/pgtools/commit/3c0d313))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/olalonde/pgtools/compare/v0.2.2...v0.2.3) (2016-11-27)
 
