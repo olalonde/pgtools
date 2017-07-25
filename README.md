@@ -23,7 +23,7 @@ npm install --save -g pgtools
 ## CLI Example
 
 ```bash
-createdbjs my_awesome_db --user=admin --pasword=admin
+createdbjs my_awesome_db --user=admin --password=admin
 ```
 
 ## Programatic Example
