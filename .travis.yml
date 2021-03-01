@@ -1,7 +1,11 @@
 language: node_js
 node_js:
-  - "5"
   - "6"
+  - "8"
+  - "10"
+  - "12"
+  - "14"
+  - "lts/*"
   - "node"
 services:
   - postgresql
