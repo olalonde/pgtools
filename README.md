@@ -86,6 +86,10 @@ pgtools.createdb(config, 'test-db', function (err, res) {
 * `createdbjs`: which emulates pgtools' `createdb` functionality.
 * `dropdbjs`: which emulates pgtools' `dropdb` functionality.
 
+## Node.js support
+
+We support all LTS versions from 6 and up. We try to keep up with the latest Node.js version.
+
 ## Releasing
 
 Rather than manually running `npm version <patch|minor|major>`, instead run:
