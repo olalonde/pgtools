@@ -16,7 +16,7 @@
   "devDependencies": {
     "coveralls": "^2.11.12",
     "nyc": "^11.0.3",
-    "standard-version": "^4.2.0"
+    "standard-version": "^8.0.1"
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
