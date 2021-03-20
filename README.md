@@ -1,15 +1,15 @@
 # pgtools
 
 [![Build
-Status](https://travis-ci.org/olalonde/pgtools.svg?branch=master)](https://travis-ci.org/olalonde/pgtools)
+Status](https://github.com/olalonde/pgtools/actions/workflows/nodejs.yml/badge.svg)](https://github.com/olalonde/pgtools/actions/workflows/nodejs.yml)
 [![Coverage Status](https://coveralls.io/repos/github/olalonde/pgtools/badge.svg?branch=master)](https://coveralls.io/github/olalonde/pgtools?branch=master)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 
 
 Pure Node.js implementation of PostgreSQL's
-[createdb](http://www.postgresql.org/docs/9.4/static/app-createdb.html)
+[createdb](https://www.postgresql.org/docs/current/app-createdb.html)
 and
-[dropdb](http://www.postgresql.org/docs/9.4/static/app-dropdb.html)
+[dropdb](https://www.postgresql.org/docs/current/app-dropdb.html)
 tools.
 
 Only supports connection options and database name at the moment.
@@ -29,7 +29,7 @@ createdbjs my_awesome_db --user=admin --password=admin
 ## Programatic Example
 
 ```javascript
-var pgtools = require('pgtools');
+const pgtools = require('pgtools');
 
 // This can also be a connection string
 // (in which case the database part is ignored and replaced with postgres)
