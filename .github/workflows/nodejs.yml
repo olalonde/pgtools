@@ -47,7 +47,9 @@ jobs:
 
       - uses: harmon758/postgresql-action@v1
         with:
-          postgresql version: "latest"
+          postgresql version: "12"
+          postgresql user: "user"
+          postgresql password: "password"
 
       - name: npm install, and test
         run: |
@@ -56,4 +58,4 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
-          PG_CONNECTION_STRING: "postgres://postgres@localhost"
+          PG_CONNECTION_STRING: "postgresql://user:password@localhost"
