@@ -4,6 +4,7 @@
 Status](https://github.com/olalonde/pgtools/actions/workflows/nodejs.yml/badge.svg)](https://github.com/olalonde/pgtools/actions/workflows/nodejs.yml)
 [![Coverage Status](https://coveralls.io/repos/github/olalonde/pgtools/badge.svg?branch=master)](https://coveralls.io/github/olalonde/pgtools?branch=master)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+![Standard Version](https://img.shields.io/badge/ethics-contribute%20instead%20of%20complaining-brightgreen.svg)
 
 
 Pure Node.js implementation of PostgreSQL's
