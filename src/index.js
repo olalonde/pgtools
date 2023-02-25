@@ -1,4 +1,3 @@
-const { once } = require("events");
 const parse = require("pg-connection-string").parse;
 const pg = require("pg");
 const Client = pg.Client;
