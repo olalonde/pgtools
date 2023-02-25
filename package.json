@@ -1,28 +1,30 @@
 {
   "name": "pgtools",
-  "version": "0.3.2",
+  "version": "1.0.0-2",
   "description": "Pure Node.js implementation of PostgreSQL's createdb and dropdb tools",
-  "main": "index.js",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "dependencies": {
-    "bluebird": "^3.3.5",
-    "pg": "^8.4.0",
-    "pg-connection-string": "^2.4.0",
+    "pg": "^8.9.0",
+    "pg-connection-string": "^2.5.0",
     "yargs": "^5.0.0"
   },
   "bin": {
-    "createdbjs": "./createdb.js",
-    "dropdbjs": "./dropdb.js"
+    "createdbjs": "./src/bin/createdb.js",
+    "dropdbjs": "./src/bin/dropdb.js"
   },
   "devDependencies": {
+    "@types/pg": "^8.6.6",
+    "@types/yargs": "^17.0.22",
     "coveralls": "^2.11.12",
     "nyc": "^11.0.3",
-    "standard-version": "^8.0.1"
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "nyc node test.js",
-    "docker": "docker-compose up dbcreate && docker-compose up -d db",
-    "release": "standard-version"
+    "test": "nyc node src/test.js",
+    "docker": "docker-compose up dbcreate && docker-compose up -d db"
   },
   "repository": {
     "type": "git",

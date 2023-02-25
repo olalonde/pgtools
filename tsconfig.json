@@ -1,0 +1,21 @@
+{
+  "include": [
+    "src/**/*.d.ts",
+    "src/test.js"
+  ],
+  "compilerOptions": {
+    "module": "es2015",
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "moduleResolution": "node",
+    // "types": [],
+    "declaration": true,
+    // "emitDeclarationOnly": true,
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true
+  }
+}

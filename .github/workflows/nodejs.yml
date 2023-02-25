@@ -13,54 +13,43 @@ jobs:
     timeout-minutes: 5
     strategy:
       matrix:
-        node: ["6", "8", "10", "12", "14"]
+        node-version: ["10", "12", "14"]
 
     name: Testing on Node.js ${{ matrix.node }}
     steps:
-      - name: Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-          check-latest: false
-
-      - uses: actions/checkout@v2
-        if: github.event_name == 'pull_request'
-        with:
-          ref: ${{ github.head_ref }}
-
-      - uses: actions/checkout@v2
-        if: github.ref == 'refs/heads/master'
-
-      - name: Prettier Action on PR
-        if: github.event_name == 'pull_request'
-        uses: creyD/prettier_action@v3.0
-        with:
-          prettier_version: ^2.1.1
-          commit_message: "Run prettier via GitHub Action"
-          file_pattern: "."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Prettier Action on master
-        if: github.ref == 'refs/heads/master'
-        uses: creyD/prettier_action@v3.0
-        with:
-          prettier_version: ^2.1.1
-          commit_message: "Run prettier via GitHub Action"
-          file_pattern: "."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          node-version: ${{ matrix.node-version }}
+      # - name: Prettier Action on PR
+      #   if: github.event_name == 'pull_request'
+      #   uses: creyD/prettier_action@v3.0
+      #   with:
+      #     prettier_version: ^2.1.1
+      #     commit_message: "Run prettier via GitHub Action"
+      #     file_pattern: "."
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 
+      # - name: Prettier Action on master
+      #   if: github.ref == 'refs/heads/master'
+      #   uses: creyD/prettier_action@v3.0
+      #   with:
+      #     prettier_version: ^2.1.1
+      #     commit_message: "Run prettier via GitHub Action"
+      #     file_pattern: "."
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - uses: harmon758/postgresql-action@v1
         with:
           postgresql version: "12"
           postgresql user: "user"
           postgresql password: "password"
 
-      - name: npm install, and test
-        run: |
-          npm install
-          npm test
+      - run: npm ci
+      - run: npm test
         env:
           CI: true
           NODE_ENV: test
