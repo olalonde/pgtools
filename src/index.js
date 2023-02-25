@@ -47,8 +47,8 @@ function createFunction(action) {
     const opts = typeof opts_ === "string" ? parse(opts_) : opts_;
 
     const config = {
-      database: ADMIN_DB,
       ...opts,
+      database: ADMIN_DB,
     };
     const client = new Client(config);
     try {
