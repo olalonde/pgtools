@@ -45,18 +45,16 @@ await dropdb(config, "test-db");
 
 # Usage
 
-`createdb(config, dbname): Promise<void>`
+```typescript
+createdb(config: string | pg.ConnectionConfig, dbname: string): Promise<pg.QueryResult<any>>;
+dropdb(config:  string | pg.ConnectionConfig, dbname: string): Promise<pg.QueryResult<any>>;
+```
 
-`dropdb(config, dbname): Promise<void>`
+See [./src/index.d.ts](./scr/index.d.ts) for types.
 
-- _object_ **config**
+See [pg documentation](https://node-postgres.com/apis/client) for `ConnectionConfig` format.
 
-  An object with user, password, port, and host properties. This can
-  also be a node-postgres compatible connection string.
-
-- _string_ **dbname**
-
-  The name of the database to create.
+More usage examples in [./src/test.js](./src/test.js).
 
 ## Bins
 
