@@ -24,7 +24,7 @@ npm install --save -g pgtools
 createdbjs my_awesome_db --user=admin --password=admin
 ```
 
-## Programatic Example
+## Library Example
 
 ```javascript
 const { createdb, dropdb } = require("pgtools");
