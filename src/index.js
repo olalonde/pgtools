@@ -1,4 +1,4 @@
-const parse = require("pg-connection-string").parse;
+const { parse } = require("pg-connection-string");
 const pg = require("pg");
 const Client = pg.Client;
 const ADMIN_DB = "postgres";
@@ -23,12 +23,12 @@ const knownErrors = {
   },
 };
 
-class PgError extends Error {
+class PgtoolsError extends Error {
   constructor(error) {
     super();
     this.cause = error;
     const { name, message } = knownErrors[error.code] || {
-      name: "PgError",
+      name: "PgtoolsError",
       message: error.message,
     };
     this.message = message;
@@ -36,7 +36,7 @@ class PgError extends Error {
   }
 }
 
-function isPgError(err) {
+function isPgtoolsError(err) {
   return err instanceof Error && "code" in err && "message" in err;
 }
 
@@ -58,8 +58,8 @@ function createFunction(action) {
       return result;
     } catch (err) {
       // wrap errors
-      if (isPgError(err)) {
-        throw new PgError(err);
+      if (isPgtoolsError(err)) {
+        throw new PgtoolsError(err);
       }
       throw err;
     } finally {
@@ -69,7 +69,7 @@ function createFunction(action) {
 }
 
 module.exports = {
-  PgError,
+  PgtoolsError,
   createdb: createFunction("CREATE"),
   dropdb: createFunction("DROP"),
 };

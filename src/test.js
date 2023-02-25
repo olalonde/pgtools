@@ -1,20 +1,23 @@
-const { createdb, dropdb } = require("./");
+const assert = require("assert");
+const { createdb, dropdb, PgtoolsError } = require("../");
 
 const config = process.env.PG_CONNECTION_STRING || {
   host: process.env.DB_HOST || "127.0.0.1",
   user: process.env.DB_USER || process.env.USER || "postgres",
 };
 
-function validateError(err, name) {
-  if (!(err instanceof Error)) {
-    throw new Error("The error should be an Error instance");
-  }
-  if (!err.message) {
-    throw new Error("The error should have a message property");
-  }
-  if (err.name !== name) {
-    throw new Error(`The error name should be ${name}`, { cause: err });
-  }
+/**
+ * @param {string} name
+ */
+function validateError(name) {
+  /**
+   * @param {PgtoolsError} err
+   */
+  return (err) => {
+    assert.ok(err instanceof PgtoolsError);
+    assert.equal(err.name, name);
+    return true;
+  };
 }
 
 async function test() {
@@ -25,22 +28,18 @@ async function test() {
   });
   console.log("createdb");
   await createdb(config, "pgtools-test");
-  try {
-    console.log("createdb (error)");
-    await createdb(config, "pgtools-test");
-    throw new Error("Creating an existing database should return an error");
-  } catch (err) {
-    validateError(err, "duplicate_database");
-  }
+  console.log("createdb (db already exists error)");
+  await assert.rejects(
+    createdb(config, "pgtools-test"),
+    validateError("duplicate_database")
+  );
   console.log("dropdb");
   await dropdb(config, "pgtools-test");
-  try {
-    console.log("dropdb (error)");
-    await dropdb(config, "pgtools-test");
-    throw new Error("Dropping an nonexistent database should return an error");
-  } catch (err) {
-    validateError(err, "invalid_catalog_name");
-  }
+  console.log("dropdb (db does not exist error)");
+  await assert.rejects(
+    dropdb(config, "pgtools-test"),
+    validateError("invalid_catalog_name")
+  );
   console.log("All tests pass");
 }
 

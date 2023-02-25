@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-var { createdb, dropdb, PgError } = require("./");
+var { createdb, dropdb, PgtoolsError } = require("./");
 const { env } = process;
 
 function buildYargs() {
@@ -45,7 +45,7 @@ function createCli(fn) {
       );
     }
     main().catch((err) => {
-      if (err instanceof PgError) {
+      if (err instanceof PgtoolsError) {
         console.error(err.toString());
       } else {
         console.error(err);
